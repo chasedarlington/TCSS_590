@@ -720,7 +720,7 @@ def export_pngs(log_dir="runs/ppo_lunar_lander", out_dir="tensorboard_pngs"):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("mode", choices=["train", "render", "play", "export"], nargs="?", default="train")
-    parser.add_argument("--timestep", type=int, default=TIMESTEP)
+    parser.add_argument("--update_timestep", type=int, default=TIMESTEP)
     parser.add_argument("--epochs", type=int, default=EPOCHS)
     parser.add_argument("--minibatches", type=int, default=MINIBATCHES)
     parser.add_argument("--ppo-clip", type=float, default=PPO_CLIP)

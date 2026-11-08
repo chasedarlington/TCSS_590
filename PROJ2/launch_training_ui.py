@@ -81,7 +81,7 @@ def home():
         <form action="/run" method="post">
             <label for="run_name">Run name:</label><br>
             <input id="run_name" name="run_name" type="text" value="ppo_lunar_lander" style="width: 420px;"><br><br>
-            {slider("timestep", "Update timestep", "2048", "256", "8192", "256")}
+            {slider("update_timestep", "Update update_timestep", "2048", "256", "8192", "256")}
             {slider("epochs", "PPO epochs", "10", "1", "30", "1")}
             {slider("ppo_clip", "PPO clip ppo_clip", "0.2", "0.05", "0.5", "0.01")}
             {slider("disc_coef", "Discount disc_coef", "0.99", "0.90", "0.999", "0.001")}
@@ -136,7 +136,7 @@ def run():
     if process is not None and process.poll() is None:
         return redirect("/")
 
-    timestep = request.form.get("timestep", "2048")
+    timestep = request.form.get("update_timestep", "2048")
     epochs = request.form.get("epochs", "10")
     epsilon = request.form.get("ppo_clip", "0.2")
     gamma = request.form.get("disc_coef", "0.99")
@@ -165,7 +165,7 @@ def run():
 
     process = subprocess.Popen([
         "python", "-u", "lunar_lander_ppo.py", "train",
-        "--timestep", timestep,
+        "--update_timestep", timestep,
         "--epochs", epochs,
         "--ppo_clip", epsilon,
         "--disc_coef", gamma,
